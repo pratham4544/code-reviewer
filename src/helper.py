@@ -10,8 +10,8 @@ from src.prompt import *
 import streamlit as st
 from langchain_community.document_loaders import TextLoader
 from langchain_together.embeddings import TogetherEmbeddings
-
-
+# from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_ai21 import AI21Embeddings
 
 
 
@@ -24,7 +24,9 @@ class ResponseLLM:
     def __init__(self, model=None, embeddings=None):
         # Initialize the model and embeddings, using defaults if none provided
         self.model = model or ChatGroq(temperature=0.4, model="llama3-70b-8192", api_key=os.environ['GORQ_API_KEY'])
-        self.embeddings = embeddings or TogetherEmbeddings(model="togethercomputer/m2-bert-80M-8k-retrieval")
+        # self.embeddings = embeddings or TogetherEmbeddings(model="togethercomputer/m2-bert-80M-8k-retrieval")
+        self.embeddings = embeddings or AI21Embeddings(api_key=os.environ['AI21_API_KEY'])
+        
 
     def load_ebooks(self, ebooks):
         # Load documents from a directory of PDF files
