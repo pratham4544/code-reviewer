@@ -1,6 +1,5 @@
 import streamlit as st
 from src.helper import ResponseLLM
-import os
 
 
 st.header('Code Reviewer')
